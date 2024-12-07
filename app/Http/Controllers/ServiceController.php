@@ -11,13 +11,13 @@ class ServiceController extends Controller
      * Display a listing of services
      */
     public function index()
-    {
-        $services = Service::where('is_active', true)->get();
+{
+    $services = Service::where('is_active', true)->paginate(9);
 
-        return view('services.index', [
-            'services' => $services
-        ]);
-    }
+    return view('services.index', [
+        'services' => $services
+    ]);
+}
 
     /**
      * Display detailed information about a specific service
@@ -50,6 +50,11 @@ class ServiceController extends Controller
             'price' => 'required|numeric|min:0',
             'is_featured' => 'boolean',
             'is_active' => 'boolean'
+        ], [
+            'name.required' => 'Service name is required',
+            'description.required' => 'Service description is required',
+            'price.numeric' => 'Price must be a number',
+            'price.min' => 'Price cannot be negative'
         ]);
 
         $service = Service::create($validatedData);
@@ -83,6 +88,11 @@ class ServiceController extends Controller
             'price' => 'required|numeric|min:0',
             'is_featured' => 'boolean',
             'is_active' => 'boolean'
+        ], [
+            'name.required' => 'Service name is required',
+            'description.required' => 'Service description is required',
+            'price.numeric' => 'Price must be a number',
+            'price.min' => 'Price cannot be negative'
         ]);
 
         $service->update($validatedData);

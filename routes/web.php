@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\ContactCotroller;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\AuthenticateUser;
 
@@ -17,11 +17,12 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
 
 //Service Routes
-Route::get('/servies', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/services/{id}', [ServiceController::class, 'show'])->name('services.show');
 
 //Contact Routes
-Route::get('/contact', [ContactCotroller::class, 'index'])->name('contact.index');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.store');
 
 //Testimonial Routes
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');

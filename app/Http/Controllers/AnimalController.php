@@ -7,11 +7,13 @@ use App\Models\Animal;
 
 class AnimalController extends Controller
 {
-    public function index(){
-        //Retrieve and display information
-        $animals = Animals::where('is_featured', true)->get();
-        return view('animals.index', compact('animals'));
-    }
+    public function index()
+{
+    // Retrieve and paginate the animals
+    $animals = Animal::where('is_featured', true)->paginate(9);
+
+    return view('animals.index', compact('animals'));
+}
 
     //Admin CRUD methods
     public function adminIndex(){

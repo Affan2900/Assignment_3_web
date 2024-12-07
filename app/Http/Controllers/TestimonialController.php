@@ -12,10 +12,12 @@ class TestimonialController extends Controller
      * Display a listing of the testimonials.
      */
     public function index()
-    {
-        $testimonials = Testimonial::all();
-        return view('testimonials.index', compact('testimonials'));
-    }
+{
+    // Retrieve and paginate the testimonials
+    $testimonials = Testimonial::paginate(10);
+
+    return view('testimonials.index', compact('testimonials'));
+}
 
     /**
      * Show the form for creating a new testimonial.
@@ -31,7 +33,8 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            // Your validation rules
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:1000',
         ]);
 
         $testimonial = new Testimonial($validated);
@@ -67,7 +70,8 @@ class TestimonialController extends Controller
         }
 
         $validated = $request->validate([
-            // Your validation rules
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|max:1000',
         ]);
 
         $testimonial->update($validated);

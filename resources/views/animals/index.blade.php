@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 
 @section('title', 'Our Animals - Animal Shelter')
@@ -23,7 +24,6 @@
                             <strong>Age:</strong> {{ $animal->age }} years<br>
                             <strong>Breed:</strong> {{ $animal->breed }}
                         </p>
-                        <a href="{{ route('animals.show', $animal->id) }}" class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
