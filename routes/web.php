@@ -62,9 +62,6 @@ Route::get('/profile', function () {
     return 'This is a protected route!';
    })->middleware('auth');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
