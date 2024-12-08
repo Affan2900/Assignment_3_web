@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Animal;
-use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -13,13 +12,9 @@ class HomeController extends Controller
             ->limit(4)
             ->get();
 
-        $featuredServices = Service::where('is_featured', true)
-            ->limit(3)
-            ->get();
         
         return view('home.index', [
-            'featuredAnimals' => $featuredAnimals,
-            'featuredServices' => $featuredServices,
+            'featuredAnimals' => $featuredAnimals
         ]);
     }
 
@@ -28,26 +23,11 @@ class HomeController extends Controller
         $zooHistory = config('zoo.history', 'Wild Time Zoo has been a leader in animal conservation since 1985.');
         $mission = config('zoo.mission', 'Our mission is to educate and inspire conservation efforts.');
         
-        return view('home.about', [
+        return view('about', [
             'zooHistory' => $zooHistory,
             'mission' => $mission
         ]);
     }
 
-    /**
-     * Display the zoo's mission and values
-     */
-    public function mission()
-    {
-        $values = [
-            'Conservation' => 'Protecting endangered species and their habitats.',
-            'Education' => 'Providing meaningful learning experiences about wildlife.',
-            'Research' => 'Supporting scientific research and animal welfare.',
-            'Community' => 'Engaging with local and global conservation efforts.'
-        ];
-
-        return view('home.mission', [
-            'values' => $values
-        ]);
-    }
+    
 }
