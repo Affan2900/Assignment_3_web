@@ -22,11 +22,7 @@ class AuthenticateUser
             return redirect()->route('login')->with('error', 'You must be logged in to access this page');
         }
 
-        // Check if authenticated user has admin privileges
-        if (!Auth::user()->is_admin()) {
-            // Redirect with error if not an admin
-            return redirect()->route('home')->with('error', 'Unauthorized access');
-        }
+        
 
         return $next($request);
     }

@@ -39,6 +39,11 @@
                             @if(auth()->id() == $testimonial->user_id)
                                 <div class="mt-2">
                                     <a href="{{ route('testimonials.edit', $testimonial->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <form action="{{ route('testimonials.destroy', $testimonial->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this testimonial?')">Delete</button>
+                                    </form>
                                 </div>
                             @endif
                         @endauth
@@ -53,46 +58,46 @@
     </div>
 
     {{-- Pagination --}}
-@if ($testimonials->hasPages())
-<nav class="d-flex justify-content-center mt-4">
-    <ul class="pagination">
-        {{-- Previous Page Link --}}
-        @if ($testimonials->onFirstPage())
-            <li class="page-item disabled">
-                <span class="page-link">&laquo; Previous</span>
-            </li>
-        @else
-            <li class="page-item">
-                <a class="page-link" href="{{ $testimonials->previousPageUrl() }}" rel="prev">&laquo; Previous</a>
-            </li>
-        @endif
-
-        {{-- Pagination Elements --}}
-        @foreach ($testimonials->links()->elements[0] as $page => $url)
-            @if ($page == $testimonials->currentPage())
-                <li class="page-item active" aria-current="page">
-                    <span class="page-link">{{ $page }}</span>
+    @if ($testimonials->hasPages())
+    <nav class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+            {{-- Previous Page Link --}}
+            @if ($testimonials->onFirstPage())
+                <li class="page-item disabled">
+                    <span class="page-link">&laquo; Previous</span>
                 </li>
             @else
                 <li class="page-item">
-                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    <a class="page-link" href="{{ $testimonials->previousPageUrl() }}" rel="prev">&laquo; Previous</a>
                 </li>
             @endif
-        @endforeach
 
-        {{-- Next Page Link --}}
-        @if ($testimonials->hasMorePages())
-            <li class="page-item">
-                <a class="page-link" href="{{ $testimonials->nextPageUrl() }}" rel="next">Next &raquo;</a>
-            </li>
-        @else
-            <li class="page-item disabled">
-                <span class="page-link">Next &raquo;</span>
-            </li>
-        @endif
-    </ul>
-</nav>
-@endif
+            {{-- Pagination Elements --}}
+            @foreach ($testimonials->links()->elements[0] as $page => $url)
+                @if ($page == $testimonials->currentPage())
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">{{ $page }}</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                    </li>
+                @endif
+            @endforeach
+
+            {{-- Next Page Link --}}
+            @if ($testimonials->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $testimonials->nextPageUrl() }}" rel="next">Next &raquo;</a>
+                </li>
+            @else
+                <li class="page-item disabled">
+                    <span class="page-link">Next &raquo;</span>
+                </li>
+            @endif
+        </ul>
+    </nav>
+    @endif
 
 </div>
 @endsection

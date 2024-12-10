@@ -38,6 +38,16 @@ Route::middleware('auth')->group(function () {
     // User can edit their own testimonial
     Route::get('/testimonials/{id}/edit', [TestimonialController::class, 'edit'])->name('testimonials.edit');
     Route::put('/testimonials/{id}', [TestimonialController::class, 'update'])->name('testimonials.update');
+
+    // User can delete their own testimonial
+    Route::delete('/testimonials/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+
+
+    Route::get('/animals/create', [AnimalController::class, 'create'])->name('animals.create');
+    Route::post('/animals', [AnimalController::class, 'store'])->name('animals.store');
+    Route::get('/animals/{id}/edit', [AnimalController::class, 'edit'])->name('animals.edit');
+    Route::put('/animals/{id}', [AnimalController::class, 'update'])->name('animals.update');
+    Route::delete('/animals/{id}', [AnimalController::class, 'destroy'])->name('animals.destroy');
 });
 
 Route::get('/profile', function () {
