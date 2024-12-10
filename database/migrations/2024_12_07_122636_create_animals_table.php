@@ -13,6 +13,7 @@ class CreateAnimalsTable extends Migration
             $table->string('name', 255);
             $table->text('description');
             $table->boolean('is_featured')->default(false);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

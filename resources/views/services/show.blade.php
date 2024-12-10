@@ -7,11 +7,10 @@
     <div class="row">
         <div class="col-md-6">
             <img 
-                src="{{ asset('images/services/' . strtolower(str_replace(' ', '-', $service->name)) . '.jpg') }}" 
+                src="{{ asset($service->image) }}"
                 class="img-fluid rounded shadow-lg" 
                 alt="{{ $service->name }}"
                 style="max-height: 500px; object-fit: cover;"
-                onerror="this.src='{{ asset('images/placeholder-service.jpg') }}'"
             >
         </div>
         

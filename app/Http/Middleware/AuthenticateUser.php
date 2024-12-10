@@ -23,7 +23,7 @@ class AuthenticateUser
         }
 
         // Check if authenticated user has admin privileges
-        if (!Auth::user()->isAdmin()) {
+        if (!Auth::user()->is_admin()) {
             // Redirect with error if not an admin
             return redirect()->route('home')->with('error', 'Unauthorized access');
         }

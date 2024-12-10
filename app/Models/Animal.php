@@ -13,6 +13,7 @@ class Animal extends Model
         'name',
         'description',
         'is_featured',
+        'image',
     ];
 
     protected $casts = [

@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $visible = [
+        'name',
+        'email',
+        'is_admin',
+        'created_at',
+        'updated_at',
+    ];
 }

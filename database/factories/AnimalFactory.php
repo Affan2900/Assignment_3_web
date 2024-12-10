@@ -20,6 +20,7 @@ class AnimalFactory extends Factory
             'name' => fake()->word(),
             'description' => fake()->paragraph(),
             'is_featured' => fake()->boolean(),
+            'image' => 'default.jpg',
         ];
     }
 }

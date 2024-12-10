@@ -26,6 +26,7 @@ class ServiceFactory extends Factory
             'duration' => $this->faker->randomElement([30, 45, 60, 90, 120]),
             'is_featured' => $this->faker->boolean(30), // 30% chance of being featured
             'is_active' => $this->faker->boolean(80), // 80% chance of being active
+            'image' => 'default.jpg', // Set default image path
         ];
     }
 

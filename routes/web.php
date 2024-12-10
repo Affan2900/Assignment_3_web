@@ -8,6 +8,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\AuthenticateUser;
+use App\Http\Middleware\CheckAdmin;
+use App\Http\Controllers\AdminController;
 
 //Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -26,27 +28,6 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sto
 
 //Testimonial Routes
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
-
-// Remove admin testimonial edit and delete routes
-Route::middleware([AuthenticateUser::class])->group(function () {
-    Route::get('/admin/animals', [AnimalController::class, 'adminIndex'])->name('admin.animals.index');
-    Route::get('/admin/animals/create', [AnimalController::class, 'create'])->name('admin.animals.create');
-    Route::post('/admin/animals', [AnimalController::class, 'store'])->name('admin.animals.store');
-    Route::get('/admin/animals/{id}/edit', [AnimalController::class, 'edit'])->name('admin.animals.edit');
-    Route::put('/admin/animals/{id}', [AnimalController::class, 'update'])->name('admin.animals.update');
-    Route::delete('/admin/animals/{id}', [AnimalController::class, 'destroy'])->name('admin.animals.destroy');
-
-    // CRUD operations for Services
-    Route::get('/admin/services', [ServiceController::class, 'index'])->name('admin.services.index');
-    Route::get('/admin/services/create', [ServiceController::class, 'create'])->name('admin.services.create');
-    Route::post('/admin/services', [ServiceController::class, 'store'])->name('admin.services.store');
-    Route::get('/admin/services/{id}/edit', [ServiceController::class, 'edit'])->name('admin.services.edit');
-    Route::put('/admin/services/{id}', [ServiceController::class, 'update'])->name('admin.services.update');
-    Route::delete('/admin/services/{id}', [ServiceController::class, 'destroy'])->name('admin.services.destroy');
-
-    // Admin can only view testimonials, but cannot edit or delete
-    Route::get('/admin/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
-});
 
 // Add user-specific testimonial routes
 Route::middleware('auth')->group(function () {

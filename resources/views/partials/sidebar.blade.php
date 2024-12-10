@@ -1,51 +1,69 @@
-<div class="sidebar-sticky bg-light border-right p-3">
+<div class="sidebar-sticky bg-light p-3">
     <ul class="nav flex-column">
         @auth
             @if(Auth::user()->is_admin)
-                <li class="nav-item">
-                    <a class="nav-link text-primary" href="{{ route('admin.animals.index') }}">
-                        <i class="bi bi-boxes"></i> Admin - Animals
+                <li class="nav-item mb-3">
+                    <a class="nav-link fs-5" href="{{ route('admin.animals.index') }}">
+                        Admin - Animals
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-primary" href="{{ route('admin.services.index') }}">
-                        <i class="bi bi-briefcase"></i> Admin - Services
+                <li class="nav-item mb-3">
+                    <a class="nav-link fs-5" href="{{ route('admin.services.index') }}">
+                        Admin - Services
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-primary" href="{{ route('admin.testimonials.index') }}">
-                        <i class="bi bi-chat-left-quote"></i> Admin - Testimonials
-                    </a>
-                </li>
+            
             @endif
         @endauth
   
-        <li class="nav-item">
-            <a class="nav-link text-secondary" href="{{ route('home') }}">
-                <i class="bi bi-house"></i> Dashboard
-            </a>
-        </li>
         @auth
-            <li class="nav-item">
-                <a class="nav-link text-secondary" href="{{ route('testimonials.create') }}">
-                    <i class="bi bi-pencil-square"></i> Submit Testimonial
+            <li class="nav-item mb-3">
+                <a class="nav-link fs-5" href="{{ route('profile.edit') }}">
+                    Profile
                 </a>
             </li>
         @endauth
+            <li class="nav-item mb-3">
+                <a class="nav-link fs-5" href="{{ route('animals.index') }}">
+                    Animals
+                </a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link fs-5" href="{{ route('services.index') }}">
+                    Services
+                </a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link fs-5" href="{{ route('testimonials.index') }}">
+                    Testimonials
+                </a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link fs-5" href="{{ route('contact.index') }}">
+                    Contact Us
+                </a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link fs-5" href="{{ route('about') }}">
+                    About Us
+                </a>
+            </li>
     </ul>
-  </div>
-
-  
-<style>
-
-.nav-link {
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-</style>
+ </div>
+ 
+ <style>
+ .nav-link {
+    color: #333;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+ }
+ 
+ .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+ }
+ </style>

@@ -23,11 +23,10 @@
                         @endif
                         
                         <img 
-                            src="{{ asset('images/services/' . strtolower(str_replace(' ', '-', $service->name)) . '.jpg') }}" 
+                            src="{{ asset($service->image) }}"
                             class="img-fluid w-100" 
                             alt="{{ $service->name }}"
                             style="height: 250px; object-fit: cover;"
-                            onerror="this.src='{{ asset('images/placeholder-service.jpg') }}'"
                         >
                     </div>
                     

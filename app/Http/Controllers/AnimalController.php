@@ -15,11 +15,11 @@ class AnimalController extends Controller
     return view('animals.index', compact('animals'));
 }
 
-    //Admin CRUD methods
-    public function adminIndex(){
-        $animals = Animal::all();
-        return view('animals.admin.index', compact('animals'));
-    }
+    // //Admin CRUD methods
+    // public function adminIndex(){
+    //     $animals = Animal::all();
+    //     return view('animals.admin.index', compact('animals'));
+    // }
 
     public function create(){
         return view('admin.animals.create');
